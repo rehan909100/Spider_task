@@ -1,0 +1,330 @@
+
+/* Wood background */
+body {
+  background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-color: #deb887;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Center the game */
+#board {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  grid-template-rows: repeat(6, 60px);
+  gap: 8px;
+  background: #b97a56;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(60, 30, 10, 0.4);
+  padding: 18px;
+  margin: 40px auto 20px auto;
+  width: max-content;
+}
+
+/* Wooden cell style */
+.cell {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 60% 40%, #e6c28b 60%, #b97a56 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #8b5c2b inset, 0 1px 2px #fff8e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+  border: 2px solid #a97c50;
+}
+
+/* Red and yellow discs */
+.cell.red {
+  background: radial-gradient(circle at 60% 40%, #ff6666 60%, #a00 100%);
+  box-shadow: 0 2px 8px #a00 inset, 0 1px 2px #fff8e1;
+}
+
+.cell.yellow {
+  background: radial-gradient(circle at 60% 40%, #ffe066 60%, #bfa600 100%);
+  box-shadow: 0 2px 8px #bfa600 inset, 0 1px 2px #fff8e1;
+}
+
+/* Blocked column effect */
+.cell.blocked {
+  background: repeating-linear-gradient(
+    135deg,
+    #b97a56 0 10px,
+    #a97c50 10px 20px
+  );
+  opacity: 0.6;
+  border: 2px dashed #8b5c2b;
+}
+
+/* Controls styling */
+#controls {
+  background: #e6c28b;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #8b5c2b33;
+  padding: 16px 24px;
+  margin: 30px auto 0 auto;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#controls label {
+  font-weight: bold;
+  color: #6b3e26;
+}
+
+#controls select,
+#controls button {
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #a97c50;
+  background: #fff8e1;
+  color: #6b3e26;
+  margin-left: 4px;
+}
+
+#controls button {
+  background: #b97a56;
+  color: #fff8e1;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+#controls button:hover {
+  background: #a97c50;
+}
+
+#timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #a00;
+  margin-right: 10px;
+  min-width: 110px;
+  text-align: center;
+}
+
+#status {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #6b3e26;
+  margin-top: 10px;
+  text-shadow: 0 1px 0 #fff8e1;
+}
+
+h1 {
+  text-align: center;
+  color: #6b3e26;
+  text-shadow: 0 2px 0 #fff8e1;
+  margin-top: 24px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+
+
+#controls button#undoBtn {
+  background: #ffe066;
+  color: #6b3e26;
+}
+#controls button#undoBtn:hover {
+  background: #ffe799;
+}
+
+#controls button#restartBtn {
+  background: #a00;
+  color: #fff8e1;
+}
+#controls button#restartBtn:hover {
+  background: #d22;
+}
+
+#controls button#clearLeaderboardBtn {
+  background: #6b3e26;
+  color: #fff8e1;
+}
+#controls button#clearLeaderboardBtn:hover {
+  background: #a97c50;
+}
+
+
+#controls button#showLeaderboardBtn {
+  background: #ffe066;
+  color: #6b3e26;
+}
+#controls button#showLeaderboardBtn:hover {
+  background: #fff8e1;
+}
+
+
+#leaderboard {
+  display: none; /* default hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #e6c28b;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(60, 30, 10, 0.4);
+  padding: 32px 40px 24px 40px;
+  z-index: 1000;
+  min-width: 260px;
+  text-align: center;
+}
+
+#leaderboard h2 {
+  margin-top: 0;
+  color: #6b3e26;
+}
+
+#leaderboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#leaderboard li {
+  font-size: 1.2rem;
+  color: #6b3e26;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+#leaderboard-backdrop {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+
+/*  Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  vertical-align: middle;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #222;
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #2d1c0f url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  color: #f5e9d4;
+}
+
+body.dark-mode #board {
+  background: #4b2e13;
+  box-shadow: 0 8px 32px rgba(20,10,0,0.7);
+}
+
+body.dark-mode .cell {
+  background: radial-gradient(circle at 60% 40%, #7a5a3a 60%, #4b2e13 100%);
+  border: 2px solid #7a5a3a;
+  box-shadow: 0 2px 8px #2d1c0f inset, 0 1px 2px #4b2e13;
+}
+
+body.dark-mode .cell.red {
+  background: radial-gradient(circle at 60% 40%, #b94a4a 60%, #6a1818 100%);
+  box-shadow: 0 2px 8px #6a1818 inset, 0 1px 2px #fff8e1;
+}
+
+body.dark-mode .cell.yellow {
+  background: radial-gradient(circle at 60% 40%, #ffe066 60%, #bfa600 100%);
+  box-shadow: 0 2px 8px #bfa600 inset, 0 1px 2px #fff8e1;
+}
+
+body.dark-mode .cell.blocked {
+  background: repeating-linear-gradient(
+    135deg,
+    #4b2e13 0 10px,
+    #7a5a3a 10px 20px
+  );
+  opacity: 0.6;
+  border: 2px dashed #7a5a3a;
+}
+
+body.dark-mode #controls {
+  background: #3a2412;
+  color: #f5e9d4;
+  box-shadow: 0 2px 8px #0008;
+}
+
+body.dark-mode #controls button,
+body.dark-mode #controls select {
+  background: #7a5a3a;
+  color: #f5e9d4;
+  border: 1px solid #bfa600;
+}
+
+body.dark-mode #controls button:hover {
+  background: #bfa600;
+  color: #4b2e13;
+}
+
+body.dark-mode #timer {
+  color: #ffe066;
+}
+
+body.dark-mode #status {
+  color: #ffe066;
+  text-shadow: 0 1px 0 #4b2e13;
+}
+
+body.dark-mode h1 {
+  color: #ffe066;
+  text-shadow: 0 2px 0 #4b2e13;
+}
+
+body.dark-mode #leaderboard {
+  background: #3a2412;
+  color: #ffe066;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+}
+
+body.dark-mode #leaderboard h2,
+body.dark-mode #leaderboard li {
+  color: #ffe066;
+}
+
+body.dark-mode #leaderboard-backdrop {
+  background: rgba(0,0,0,0.7);
+}

@@ -1,0 +1,90 @@
+body {
+  /* /* background: #f0f0f0; */
+  background-color: black;
+  font-family: Arial, sans-serif;
+  text-align: center; */
+
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: #f04f47; */
+  height: 100vh;
+  /* width: 100vb; */
+  margin: 0;
+}
+
+
+#meterCanvas {
+   background: transparent;
+  /* background-color: aqua; */
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0 auto;
+}
+
+
+#gameCanvas {
+  /* background: #fff; */
+    /* display: flex; */
+  background: transparent;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 438px; /* Adjust so arc/hammer is at the bottom of the meter */
+  z-index: 2;
+  pointer-events: none; /* So meter can still get events if needed */
+}
+
+
+.game-container {
+  margin: 40px auto;
+  background: #b2b2b2;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #aaa;
+  padding: 30px;
+  width: 450px;
+}
+canvas {
+  background: #e3e3e3;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+#scoreDisplay {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+#restartBtn {
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: none;
+  background: #ff9800;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+body.red-theme {
+  background: #e6394760;
+}
+body.blue-theme {
+  background: #2a6cf06f;
+}
+#winnerDisplay {
+  font-size: 1.3em;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #222;
+}
+#playerInfo {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #000000;
+}
+#scoreBoard {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #000000;
+}

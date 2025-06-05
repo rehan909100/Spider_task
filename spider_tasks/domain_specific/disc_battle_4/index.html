@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Spider Game </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Disc Battle 4</h1>
+  <div id="controls">
+    <div id="timer"></div>
+    <label for="blockColumn">Block a column:</label>
+    <select id="blockColumn"></select>
+    <button onclick="blockColumn()">Block</button>
+    <button id="undoBtn">Undo</button>
+<button id="restartBtn">Restart</button>
+<button id="clearLeaderboardBtn">Clear Leaderboard</button>
+<button id="showLeaderboardBtn">Show Leaderboard</button>
+<label class="switch" style="margin-left:16px;">
+  <input type="checkbox" id="soundSwitch" checked>
+  <span class="slider"></span>
+</label>
+<span style="margin-left:8px;">Sound</span>
+
+<label class="switch" style="margin-left:16px;">
+  <input type="checkbox" id="darkModeSwitch">
+  <span class="slider"></span>
+</label>
+<span style="margin-left:8px;">Dark Mode</span>
+  </div>
+<p id="status"></p>
+<div id="leaderboard-backdrop"></div>
+<div id="leaderboard" style="display:none;">
+  <h2>Leaderboard</h2>
+  <ul>
+    <li id="redScore">Red: 0</li>
+    <li id="yellowScore">Yellow: 0</li>
+    <li id="drawScore">Draws: 0</li>
+  </ul>
+</div>
+  <div id="board"></div>
+  <p id="status"></p>
+<audio id="moveSound" src="move.mp3"></audio>
+<audio id="winSound" src="win.mp3"></audio>
+<audio id="drawSound" src="draw.mp3"></audio>
+<audio id="errorSound" src="error.mp3"></audio>
+ <script src="script.js"></script>
+</body>
+</html>
